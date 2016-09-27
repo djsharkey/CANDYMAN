@@ -21,18 +21,7 @@ namespace WebApplication
             loggerFactory.AddConsole();
             app.UseStaticFiles();
             app.UseSession();
-
-            // When you run the app and don’t supply any URL segments,
-            // it defaults to the “Home” controller and the “Index” method
-            // specified in the template line below
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{action}",
-                    defaults: new {controller = "Home", action = "Index"}
-                );
-            });
+            app.UseMvc();
         }
     }
 }
