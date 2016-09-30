@@ -9,6 +9,7 @@ Includes the following packages by default:
 
 ### Usage
 Install: ```npm install -g generator-candyman```
+
 Run ```yo candyman```, optionally passing an app name
 ```
 yo candyman [app=name]

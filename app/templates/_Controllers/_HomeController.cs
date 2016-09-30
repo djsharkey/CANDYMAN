@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebApplication.Controllers
+namespace <%= namespace %>.Controllers
 {
     public class HomeController : Controller
     {

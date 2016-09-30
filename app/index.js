@@ -90,21 +90,24 @@ module.exports = generators.Base.extend({
 
 		//Start-up and Program CS File
 		baseConfig: function() {
-			this.fs.copy(
+			this.fs.copyTpl(
 				this.templatePath('_Startup.cs'),
-				this.destinationPath(this.appname + '/Startup.cs')
+				this.destinationPath(this.appname + '/Startup.cs'),
+				{ namespace: this.appname }
 			);
-			this.fs.copy(
+			this.fs.copyTpl(
 				this.templatePath('_Program.cs'),
-				this.destinationPath(this.appname + '/Program.cs')
+				this.destinationPath(this.appname + '/Program.cs'),
+				{ namespace: this.appname }
 			);
 		},
 
 		//Controller Files
 		controller: function() {
-			this.fs.copy(
+			this.fs.copyTpl(
 				this.templatePath('_Controllers/_HomeController.cs'),
-				this.destinationPath(this.appname + '/Controllers/HomeController.cs')
+				this.destinationPath(this.appname + '/Controllers/HomeController.cs'),
+				{ namespace: this.appname }
 			);
 		},
 
