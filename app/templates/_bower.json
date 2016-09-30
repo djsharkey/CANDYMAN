@@ -2,7 +2,7 @@
   "name": "<%= title %>",
   "private": true,
   "dependencies": {
-    "bootstrap": "3.3.6",
+    <% if (framework.name != "None") { %>"<%= framework.package %>" : "<%= framework.version %>",<% } %>
     "jquery": "2.2.0",
     "jquery-validation": "1.14.0",
     "jquery-validation-unobtrusive": "3.2.6"

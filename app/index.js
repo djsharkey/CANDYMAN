@@ -2,6 +2,7 @@ var _ = require('lodash');
 var walk = require('klaw');
 var chalk = require('chalk');
 var mkdirp = require('mkdirp');
+var framework = require('./frameworks.js')
 var generators = require('yeoman-generator');
 
 var success = false;
@@ -34,9 +35,17 @@ module.exports = generators.Base.extend({
 	      name    : 'name',
 	      message : 'Enter your project name',
 	      default : this.appname // Default to current folder name
-	    }]).then(function(answers) {
+	    }, {
+		  type    : 'list',
+	      name    : 'css',
+	      message : 'What CSS Framework would you like to use?',
+		  choices : [{name:"None"}, framework.skeleton, framework.bootstrap],
+	      store   : true	
+		}
+		]).then(function(answers) {
 	      this.appname =  answers.name;
-	      this.log(answers.name);
+		  this.framework = answers.css;
+		  
 	      done();
 	    }.bind(this));
 	},
@@ -72,7 +81,7 @@ module.exports = generators.Base.extend({
 			this.fs.copyTpl(
 				this.templatePath('_bower.json'),
 				this.destinationPath(this.appname + '/bower.json'),
-				{ title: this.appname }
+				{ title: this.appname, framework: this.framework }
 			);
 			this.fs.copy(
 				this.templatePath('bowerrc'),
@@ -117,13 +126,15 @@ module.exports = generators.Base.extend({
 				this.templatePath('_Views/_Home/_Index.cshtml'),
 				this.destinationPath(this.appname + '/Views/Home/Index.cshtml')
 			);
-			this.fs.copy(
+			this.fs.copyTpl(
 				this.templatePath('_Views/_Shared/_Layout.cshtml'),
-				this.destinationPath(this.appname + '/Views/Shared/_Layout.cshtml')
+				this.destinationPath(this.appname + '/Views/Shared/_Layout.cshtml'),
+				{ title: this.appname, framework: this.framework }
 			);
-			this.fs.copy(
+			this.fs.copyTpl(
 				this.templatePath('_Views/_ViewImports.cshtml'),
-				this.destinationPath(this.appname + '/Views/_ViewImports.cshtml')
+				this.destinationPath(this.appname + '/Views/_ViewImports.cshtml'),
+				{ namespace: this.appname }
 			);
 			this.fs.copy(
 				this.templatePath('_Views/_ViewStart.cshtml'),
@@ -160,7 +171,7 @@ module.exports = generators.Base.extend({
 				success = true;
 				console.log(chalk.green("Finished Bower Install!"));
 				gen.spawnCommand('dotnet', ['restore'], {
-					'config.cwd': ("./" + gen.appname)
+					'config.cwd': (("./" + gen.appname + "/"))
 				},
 				function(err){
 					if(err){
