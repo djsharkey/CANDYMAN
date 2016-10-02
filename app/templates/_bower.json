@@ -3,8 +3,9 @@
   "private": true,
   "dependencies": {
     <% if (framework.value) { %>"<%= framework.package %>" : "<%= framework.version %>",<% } %>
-    "jquery": "2.2.0",
+    <% if (jquery == "True") { %>"jquery": "2.2.0",
     "jquery-validation": "1.14.0",
     "jquery-validation-unobtrusive": "3.2.6"
+    <% } %>
   }
 }

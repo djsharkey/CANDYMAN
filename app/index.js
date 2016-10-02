@@ -41,11 +41,17 @@ module.exports = generators.Base.extend({
 	      message : 'What CSS Framework would you like to use?',
 		  choices : [{name:"None"}, framework.skeleton, framework.bootstrap],
 	      store   : true	
+		}, {
+		  type    : 'list',
+		  name    : 'jquery',
+		  message : 'Would you like to enable jQuery?',
+		  choices : ['Yes', 'No'],
+		  store   : true
 		}
 		]).then(function(answers) {
 	      this.appname =  answers.name;
 		  this.framework = answers.css;
-		  
+		  this.jquery = answers.jquery;
 	      done();
 	    }.bind(this));
 	},
@@ -81,7 +87,7 @@ module.exports = generators.Base.extend({
 			this.fs.copyTpl(
 				this.templatePath('_bower.json'),
 				this.destinationPath(this.appname + '/bower.json'),
-				{ title: this.appname, framework: this.framework }
+				{ title: this.appname, framework: this.framework, jquery: this.jquery }
 			);
 			this.fs.copy(
 				this.templatePath('bowerrc'),
@@ -129,7 +135,7 @@ module.exports = generators.Base.extend({
 			this.fs.copyTpl(
 				this.templatePath('_Views/_Shared/_Layout.cshtml'),
 				this.destinationPath(this.appname + '/Views/Shared/_Layout.cshtml'),
-				{ title: this.appname, framework: this.framework }
+				{ title: this.appname, framework: this.framework, jquery: this.jquery }
 			);
 			this.fs.copyTpl(
 				this.templatePath('_Views/_ViewImports.cshtml'),

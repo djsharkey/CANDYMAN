@@ -2,8 +2,9 @@
 One of many C# ASP.NET Core - Yeoman Generators
 ******
 Generator built to offer a very simple project layout and starting place.
-Includes the following packages by default:
+Offers the ability to toggle usage of the following front-end packages/frameworks:
  - Bootstrap
+ - Skeleton
  - jQuery
  - jQuery Validation
 
@@ -14,6 +15,8 @@ Run ```yo candyman```, optionally passing an app name
 ```
 yo candyman [app=name]
 ```
+
+Once installed navigate into newly created folder and run ```dotnet restore```
 
 ### License
 

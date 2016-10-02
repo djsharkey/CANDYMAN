@@ -15,10 +15,12 @@
     <div class="container body-content">
         @RenderBody()
     </div>
+        <% if (jquery == "True") { %>
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
                 asp-fallback-src="~/lib/jquery/dist/jquery.js"
                 asp-fallback-test="window.jQuery">
         </script>
+        <% } %>
         <% if (framework.name == "Bootstrap") { %>
         <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"
                 asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.js"
