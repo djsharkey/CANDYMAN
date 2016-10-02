@@ -176,16 +176,21 @@ module.exports = generators.Base.extend({
 			}else{
 				success = true;
 				console.log(chalk.green("Finished Bower Install!"));
-				gen.spawnCommand('dotnet', ['restore'], {
-					'config.cwd': (("./" + gen.appname + "/"))
-				},
-				function(err){
-					if(err){
-						console.log(chalk.red(err));
-					}else{
-						console.log(chalk.green("Finished DotNet Restore!"));
-					}
-				});
+				//************************************
+				//Disabled Auto-run dotnet restore because it was restoring all projects
+				//in directory where the yeoman generator was run
+				//Plan to re-enable at a later point
+				//************************************
+				// gen.spawnCommand('dotnet', ['restore'], {
+				// 	'config.cwd': (("./" + gen.appname + "/"))
+				// },
+				// function(err){
+				// 	if(err){
+				// 		console.log(chalk.red(err));
+				// 	}else{
+				// 		console.log(chalk.green("Finished DotNet Restore!"));
+				// 	}
+				// });
 			}
 		});
 	},
@@ -194,7 +199,7 @@ module.exports = generators.Base.extend({
 	end: function() {
 		var base = chalk.bold(("------------------------") + "\n");
 		if(success){
-			this.log(base + chalk.cyan.bold("Base ASP.NET application successfully created\nRunning dotnet restore to load Dependencies...\n") + base);
+			this.log(base + chalk.cyan.bold("Base ASP.NET application successfully created\n") + base);
 		} else {
 			this.log(base + chalk.red.bold("App failed to be created...\nReview Logs above to see what may have gone wrong\n") + base);
 		}
