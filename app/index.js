@@ -27,14 +27,16 @@ module.exports = generators.Base.extend({
 	prompting: function() {
 		if(this.appname){
 			this.log(chalk.green("App name provided - Skipping prompt"));
-			return;
 		}
 		var done = this.async();
 	    return this.prompt([{
 	      type    : 'input',
 	      name    : 'name',
 	      message : 'Enter your project name',
-	      default : this.appname // Default to current folder name
+	      default : this.appname, // Default to current folder name
+		  when: function (answers) {
+			return this.appname; 
+		  }
 	    }, {
 		  type    : 'list',
 	      name    : 'css',
@@ -49,7 +51,9 @@ module.exports = generators.Base.extend({
 		  store   : true
 		}
 		]).then(function(answers) {
-	      this.appname =  answers.name;
+		  if (answers.name){
+			this.appname =  answers.name;
+		  }
 		  this.framework = answers.css;
 		  this.jquery = answers.jquery;
 	      done();
