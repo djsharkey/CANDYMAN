@@ -15,6 +15,7 @@ module.exports = generators.Base.extend({
     	this.argument('appname', { type: String, required: false });
     	// And you can then access it later on this way; e.g. CamelCased
     	this.appname = _.camelCase(this.appname);
+		this.log(chalk.cyan("WORDAGE " + this.appname));
 	},
 
 	//Initialize variables and opening statement
@@ -28,14 +29,14 @@ module.exports = generators.Base.extend({
 		if(this.appname){
 			this.log(chalk.green("App name provided - Skipping prompt"));
 		}
+		var gen = this;
 		var done = this.async();
 	    return this.prompt([{
 	      type    : 'input',
 	      name    : 'name',
 	      message : 'Enter your project name',
-	      default : this.appname, // Default to current folder name
-		  when: function (answers) {
-			return this.appname; 
+		  when: function() {
+			  return !(gen.appname);
 		  }
 	    }, {
 		  type    : 'list',
