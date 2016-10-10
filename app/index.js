@@ -15,7 +15,6 @@ module.exports = generators.Base.extend({
     	this.argument('appname', { type: String, required: false });
     	// And you can then access it later on this way; e.g. CamelCased
     	this.appname = _.camelCase(this.appname);
-		this.log(chalk.cyan("WORDAGE " + this.appname));
 	},
 
 	//Initialize variables and opening statement
