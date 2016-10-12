@@ -19,6 +19,7 @@ namespace <%= namespace %>
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole();
+            app.UseDeveloperExceptionPage();
             app.UseStaticFiles();
             app.UseSession();
             app.UseMvc();
