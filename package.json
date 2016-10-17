@@ -1,6 +1,6 @@
 {
   "name": "generator-candyman",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "license": "MIT",
   "description": "Yeoman generator for a base ASP.NET Core project",
   "repository": "git://github.com/serghar/CANDYMAN",

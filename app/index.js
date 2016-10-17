@@ -80,9 +80,10 @@ module.exports = generators.Base.extend({
 
 		//Add base JS and CSS Files in the wwwroot path
 		scaffoldStatic: function() {
-			this.fs.copy(
+			this.fs.copyTpl(
 				this.templatePath("_wwwroot/"),
-				this.destinationPath(this.appname + '/wwwroot/')
+				this.destinationPath(this.appname + '/wwwroot/'),
+				{ framework: this.framework, jquery: this.jquery }
 			);
 		},
 
