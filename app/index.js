@@ -1,4 +1,3 @@
-var _ = require('lodash');
 var walk = require('klaw');
 var chalk = require('chalk');
 var mkdirp = require('mkdirp');
@@ -13,8 +12,6 @@ module.exports = generators.Base.extend({
 
 		// This makes `appname` a required argument.
     	this.argument('appname', { type: String, required: false });
-    	// And you can then access it later on this way; e.g. CamelCased
-    	this.appname = _.camelCase(this.appname);
 	},
 
 	//Initialize variables and opening statement
@@ -33,7 +30,10 @@ module.exports = generators.Base.extend({
 	    return this.prompt([{
 	      type    : 'input',
 	      name    : 'name',
-	      message : 'Enter your project name',
+	      message : 'Enter your project name\n(Name can not start with a number or special character)',
+		  validate: function(str) {
+			  return isNaN(parseInt(str)); 
+		  },
 		  when: function() {
 			  return !(gen.appname);
 		  }
