@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - <%= title %></title>
-    <% if (framework.name != "None") { %>
+    <% if (framework.package) { %>
     <link rel="stylesheet" href="<%= framework.extLink %>"
             asp-fallback-href="<%= framework.link %>"
             asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
