@@ -49,13 +49,6 @@ module.exports = generators.Base.extend({
             message: 'Would you like to enable jQuery?',
             choices: ['Yes', 'No'],
             store: true
-        }, {
-            // Prompts user if they want to use the custome .gitignore file
-            type: 'list',
-            name: 'cusGitIgnore',
-            message: 'Would you like to enable a .gitignore file tailored to C# / ASP.NET Core projects?',
-            choices: ['Yes', 'No'],
-            store: true
         }]).then(function(answers) {
             if (answers.name) {
                 this.appname = answers.name;
