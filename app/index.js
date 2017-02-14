@@ -126,11 +126,11 @@ module.exports = generators.Base.extend({
             );
         },
 
-        // Adds the .gitignore file (Most likely cause of errors)
+        // Adds the .gitignore file
         gitignore: function() {
-            this.fs.copyTpl(
+            this.fs.copy(
                 this.templatePath('_.gitignore'),
-                this.destinationPath(this.appname), { namespace: this.appname }
+                this.destinationPath(this.appname + '/.gitignore')
             );
         },
 
