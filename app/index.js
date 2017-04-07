@@ -99,13 +99,21 @@ module.exports = generators.Base.extend({
             );
         },
 
-        //Project.json File
-        jsproject: function() {
+        //.csproj File for .NET Core version 1.1+
+        csproj: function() {
             this.fs.copy(
-                this.templatePath('_project.json'),
-                this.destinationPath(this.appname + '/project.json')
-            );
+                this.templatePath('_project.csproj'),
+                this.destinationPath(this.appname + '/' + this.appname + '.csproj')
+            )
         },
+
+        //Project.json File for .NET Core version 1.0 
+        // jsproject: function() {
+        //     this.fs.copy(
+        //         this.templatePath('_project.json'),
+        //         this.destinationPath(this.appname + '/project.json')
+        //     );
+        // },
 
         //Start-up and Program CS File
         baseConfig: function() {
