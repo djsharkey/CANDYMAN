@@ -1,4 +1,5 @@
 var walk = require('klaw');
+var path = require('path');
 var chalk = require('chalk');
 var mkdirp = require('mkdirp');
 var framework = require('./frameworks.js')
@@ -12,6 +13,7 @@ module.exports = generators.Base.extend({
 
         // This makes `appname` a required argument.
         this.argument('appname', { type: String, required: false });
+        console.log(this.sourceRoot());
     },
 
     //Initialize variables and opening statement
@@ -39,6 +41,12 @@ module.exports = generators.Base.extend({
             }
         }, {
             type: 'list',
+            name: 'version',
+            message: 'Choose SDK Version',
+            choices: ['1.1.4','2.0.0'],
+            store: true 
+        }, {
+            type: 'list',
             name: 'css',
             message: 'What CSS Framework would you like to use?',
             choices: [{ name: "None" }, framework.skeleton, framework.bootstrap],
@@ -57,13 +65,14 @@ module.exports = generators.Base.extend({
             this.jquery = answers.jquery;
             // Stores the user's answer RE: .gitignore
             this.cusGitIgnore = answers.cusGitIgnore;
+            this.sourceRoot(path.join(__dirname, answers.version));
             done();
         }.bind(this));
     },
 
     //Define Paths
     paths: function() {
-        this.sourceRoot();
+        console.log(this.sourceRoot());
         this.templatePath('index.js');
     },
 
