@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - <%= title %></title>
+    <% if (framework.package) { %>
+    <link rel="stylesheet" href="<%= framework.extLink %>"
+            asp-fallback-href="<%= framework.link %>"
+            asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+    <% } %>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+        <% if (jquery == "Yes") { %>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.js"
+                asp-fallback-test="window.jQuery">
+        </script>
+        <% } %>
+        <% if (framework.name == "Bootstrap") { %>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
+        </script>
+        <% } %>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

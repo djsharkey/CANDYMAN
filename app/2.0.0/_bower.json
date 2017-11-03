@@ -1,0 +1,11 @@
+{
+  "name": "<%= title %>",
+  "private": true,
+  "dependencies": {
+    <% if (framework.version) { %>"<%= framework.package %>" : "<%= framework.version %>"<% if (jquery == "Yes") { %>,<% }} %>
+    <% if (jquery == "Yes") { %>"jquery": "2.2.0",
+    "jquery-validation": "1.14.0",
+    "jquery-validation-unobtrusive": "3.2.6"
+    <% } %>
+  }
+}
